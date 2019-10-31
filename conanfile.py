@@ -127,7 +127,7 @@ class LibcurlConan(ConanFile):
                 self.requires.add("openssl/1.1.1d")
         if self.options.with_libssh2:
             if self.settings.compiler != "Visual Studio":
-                self.requires.add("libssh2/1.8.2")
+                self.requires.add("libssh2/1.9.0")
         if self.options.with_nghttp2:
             self.requires.add("nghttp2/1.38.0@bincrafters/stable")
 
