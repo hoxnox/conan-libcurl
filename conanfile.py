@@ -124,14 +124,14 @@ class LibcurlConan(ConanFile):
             elif self.settings.os == "Windows" and self.options.with_winssl:
                 pass
             else:
-                self.requires.add("openssl/1.1.1d")
+                self.requires.add("OpenSSL/1.1.1c@conan/stable")
         if self.options.with_libssh2:
             if self.settings.compiler != "Visual Studio":
-                self.requires.add("libssh2/1.9.0")
+                self.requires.add("libssh2/1.9.0@ctz/stable")
         if self.options.with_nghttp2:
             self.requires.add("nghttp2/1.38.0@bincrafters/stable")
 
-        self.requires.add("zlib/1.2.11")
+        self.requires.add("zlib/1.2.11@conan/stable")
 
     def source(self):
         source_url = "https://curl.haxx.se/download/"
@@ -178,7 +178,7 @@ class LibcurlConan(ConanFile):
             params.append("--with-winssl")
             params.append("--without-ssl")
         elif self.options.with_openssl:
-            openssl_path = self.deps_cpp_info["openssl"].rootpath.replace('\\', '/')
+            openssl_path = self.deps_cpp_info["OpenSSL"].rootpath.replace('\\', '/')
             params.append("--with-ssl=%s" % openssl_path)
         else:
             params.append("--without-ssl")
